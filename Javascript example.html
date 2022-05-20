@@ -1,0 +1,88 @@
+<script>
+$('.is--submit').submit(function(e){
+  e.preventDefault();
+  var container =   $(this).parent();
+  var doneBlock  =  $(".w-form-done", container);
+  var failBlock  =  $(".w-form-fail", container);
+  $.ajaxSetup({
+    type: "POST",
+    crossDomain: true,
+  });
+  var $form = $(this),
+    url = $form.attr('action');
+    emailVal = $('#email').val()
+    var posting = $.post(url, {
+      email: emailVal
+    });
+    posting.done(function(data) {
+      $('#result').text('success');
+      failBlock.hide();
+      doneBlock.show();
+      $('.hcu-popup_trigger').click();
+    });
+    posting.fail(function() {
+      $('#result').text('failed');
+      doneBlock.hide();
+      failBlock.show();
+    });
+});
+$('.is--lp--form2').submit(function(e){
+  e.preventDefault();
+  var container =   $(this).parent();
+  var doneBlock  =  $(".w-form-done", container);
+  var failBlock  =  $(".w-form-fail", container);
+  failBlock.hide();
+  doneBlock.show();
+  $.ajaxSetup({
+    type: "POST",
+    crossDomain: true,
+  });
+  var $form = $(this),
+    url = $form.attr('action');
+    emailVal = $('#email2').val()
+    var posting = $.post(url, {
+      email: emailVal
+    });
+    posting.done(function(data) {
+      $('#result').text('success');
+      failBlock.hide();
+      doneBlock.show();
+      $('.hcu-popup_trigger').click();
+    });
+    posting.fail(function() {
+      $('#result').text('failed');
+      doneBlock.hide();
+      failBlock.hide();
+      $('.hcu-popup_trigger').click();
+    });
+});
+$('.is--lp--form3').submit(function(e){
+  e.preventDefault();
+  var container =   $(this).parent();
+  var doneBlock  =  $(".w-form-done", container);
+  var failBlock  =  $(".w-form-fail", container);
+  failBlock.hide();
+  doneBlock.show();
+  $.ajaxSetup({
+    type: "POST",
+    crossDomain: true,
+  });
+  var $form = $(this),
+    url = $form.attr('action');
+    emailVal = $('#email3').val()
+    var posting = $.post(url, {
+      email: emailVal
+    });
+    posting.done(function(data) {
+      $('#result').text('success');
+      failBlock.hide();
+      doneBlock.show();
+      $('.hcu-popup_trigger').click();
+    });
+    posting.fail(function() {
+      $('#result').text('failed');
+      doneBlock.hide();
+      failBlock.show();
+    });
+});
+  </script>

@@ -1,0 +1,55 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(".success-msg__wrapper a").attr('href', '#')
+  
+  $('#wf-form-Join-Form').submit(function(e){
+    e.preventDefault();
+    url = 'https://lume.health/api/banking/waitlist';
+    emailVal = $('#email').val();
+    var benefits=[];
+    $('.w-checkbox-input--inputType-custom.w--redirected-checked').each(function(index){
+        benefits[index] = $(this).parent('label').attr('id');
+    })
+    console.log(benefits);
+    const data = {
+      contact: emailVal,
+      benefits: benefits
+    }
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://lume.health/api/banking/waitlist");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.send(JSON.stringify(data));
+  });
+</script>
+
+    //Ajax call
+    $.ajax({
+      url: "https://lume.health/api/banking/waitlist",
+      type: "POST",
+      data:JSON.stringify(data),
+      dataType: 'application/json',
+      crossDomain: true,
+      success:function(json){
+        $('.join-modal__close').click();
+        $('.w-form-fail').css('display', 'none');
+        $('.w-form-done').css('display', 'block');
+      },
+      error:function(){
+        $('.w-form-done').css('display', 'none');
+        $('.w-form-fail').css('display', 'block');
+      }
+    });    
+
+
+
+
+
